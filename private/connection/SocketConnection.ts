@@ -51,6 +51,8 @@ export abstract class SocketConnection {
     this.socket.disconnect(true);
   }
 
+  send(item:SocketAPIResponse) { this.socket.emit(item.path, { code: item.code, data: item.data }); }
+
   //Events
   abstract onConnect():Promise<void>;
   abstract onDisconnect(reason:string):Promise<void>;
@@ -96,7 +98,7 @@ export abstract class SocketConnection {
     }
 
     //Finally send data in a standard format.
-    this.socket.emit(response.path, { code: response.code, data: response.data });
+    this.send(response);
   }
 
   async onError(error:any):Promise<void> {

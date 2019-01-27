@@ -1,6 +1,6 @@
 {
   "name": "@yourwishes/app-socket",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
