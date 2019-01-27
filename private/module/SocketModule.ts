@@ -90,7 +90,7 @@ export class SocketModule extends Module {
     //Socket has attempted to connect, we need to allow the app to validate.
     let connection:SocketConnection = null;
     try {
-      connection = this.app.acceptSocket(this, socket);
+      connection = await this.app.acceptSocket(this, socket);
       await connection.onConnect();
     } catch(e) {
       this.logger.severe('Failed to accept socket!');

@@ -29,5 +29,5 @@ import { SocketConnection } from './../connection/';
 export interface ISocketApp extends IServerApp {
   socket:SocketModule;
 
-  acceptSocket(module:SocketModule, socket:Socket):SocketConnection;
+  acceptSocket(module:SocketModule, socket:Socket):Promise<SocketConnection>;
 }
