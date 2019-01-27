@@ -17,7 +17,7 @@ class DummyAppClass extends App implements ISocketApp {
     super();
   }
 
-  acceptSocket(module:SocketModule, socket:Socket):SocketConnection {
+  async acceptSocket(module:SocketModule, socket:Socket):Promise<SocketConnection> {
     return null;
   }
 }
