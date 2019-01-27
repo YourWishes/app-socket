@@ -1,0 +1,45 @@
+{
+  "name": "@yourwishes/app-socket",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node dist/",
+    "build": "tsc -p ./private/",
+    "heroku-postbuild": "tsc -p ./private/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YourWishes/app-socket.git"
+  },
+  "keywords": [
+    "Socket",
+    "socket.io",
+    "websocket",
+    "app",
+    "framework",
+    "Dominic",
+    "Masters"
+  ],
+  "author": "Dominic Masters <dominic@domsplace.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/YourWishes/app-socket/issues"
+  },
+  "dependencies": {
+    "@yourwishes/app-api": "^1.0.0",
+    "@yourwishes/app-base": "^1.2.0",
+    "@yourwishes/app-server": "^1.1.0",
+    "socket.io": "^2.2.0",
+    "socketio-wildcard": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.3.13",
+    "@types/node": "^10.12.12",
+    "@types/socket.io": "^2.1.2",
+    "jest": "^23.6.0",
+    "ts-jest": "^23.10.5",
+    "typescript": "^3.2.4"
+  }
+}
