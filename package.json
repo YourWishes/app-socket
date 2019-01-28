@@ -1,6 +1,6 @@
 {
   "name": "@yourwishes/app-socket",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -38,6 +38,7 @@
     "@types/jest": "^23.3.13",
     "@types/node": "^10.12.12",
     "@types/socket.io": "^2.1.2",
+    "@types/socket.io-client": "^1.4.32",
     "jest": "^23.6.0",
     "ts-jest": "^23.10.5",
     "typescript": "^3.2.4"
