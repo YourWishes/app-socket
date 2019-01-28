@@ -21,19 +21,25 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+import { SocketConnection } from './../socket/';
 import { SocketRequest } from './SocketRequest';
 
 export abstract class SocketHandler {
+  connection:SocketConnection;
   paths:string[]=[];
 
-  constructor(paths:string|string[]) {
+  constructor(connection:SocketConnection, paths:string|string[]) {
+    if(connection == null) throw new Error("Invalid connection supplied");
     if(!paths) throw new Error("Please supply a path, or multiple paths");
-    if(!Array.isArray(paths)) paths = [ paths ];
 
+    //Array Validation
+    if(!Array.isArray(paths)) paths = [ paths ];
     paths.forEach(path => {
       if(!path || !path.length) throw new Error("Path is not valid");
     });
 
+    //Set Params.
+    this.connection = connection;
     this.paths = paths;
   }
 
