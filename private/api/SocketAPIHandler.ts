@@ -27,8 +27,12 @@ import { SocketAPIRequest } from './SocketAPIRequest';
 import { SocketAPIResponse } from './SocketAPIResponse';
 
 export abstract class SocketAPIHandler extends APIHandler {
+  server:SocketModule;
+
   constructor(server:SocketModule, paths:string|string[]) {
     super(paths);
+
+    this.server = server;
   }
 
   abstract async onRequest(request:SocketAPIRequest):Promise<SocketAPIResponse>;
