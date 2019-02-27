@@ -26,10 +26,12 @@ import { SocketConnection } from './../socket/';
 
 export class ReloadHandler extends SocketHandler {
   constructor(connection:SocketConnection) {
-    super(connection, ['reload', 'refresh']);
+    super(connection, ['/socket/reload', '/socket/refresh']);
   }
 
   async onRequest(request:SocketRequest) {
-    window.location.reload();
+    if(window && window.location && window.location.reload) {
+      window.location.reload();
+    }
   }
 }

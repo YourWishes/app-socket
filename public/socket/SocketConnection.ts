@@ -54,7 +54,7 @@ export class SocketConnection {
     if(!path || !path.length) return;
 
     //Now we can actually count this as a semi-valid request.
-    let { code, data} = response;
+    let { code, data } = response;
     if(!code) return console.error("Got a response, however it did not have a code.");
 
     //Now let's handle the request as you expect.
