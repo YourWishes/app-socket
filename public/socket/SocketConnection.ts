@@ -25,6 +25,7 @@ import * as SocketIOClient from 'socket.io-client';
 import * as SocketIOWildcard from 'socketio-wildcard';
 
 import { SocketHandler, SocketRequest } from './../api/';
+import { ReloadHandler } from './../handlers';
 
 const patch = SocketIOWildcard(SocketIOClient.Manager);
 
@@ -40,6 +41,8 @@ export class SocketConnection {
     this.socket.on('disconnect', reason => this.onDisconnect(reason));
 
     this.socket.on('*', (req) => this.onRequest(req));
+
+    this.handlers.push(new ReloadHandler(this));
   }
 
   async onRequest(req:any) {

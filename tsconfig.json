@@ -4,11 +4,15 @@
     "module": "commonjs",
     "sourceMap": true,
     "declaration": true,
+    "outDir": "./dist/",
     "typeRoots": [ "./node_modules/@types" ],
     "jsx": "React"
   },
   "include": [
-    "index.ts"
+    "./private/**/*.ts",
+    "./common/*.ts",
+    "./public/**/*.tsx",
+    "./public/**/*.ts"
   ],
   "exclude": [
     "node_modules",
