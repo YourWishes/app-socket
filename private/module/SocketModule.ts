@@ -29,6 +29,7 @@ import * as SocketIOWildcard from 'socketio-wildcard';
 
 import { SocketConnection } from './../connection/';
 import { SocketAPIHandler } from './../api/';
+import { SocketUpdateable } from './../update/';
 
 export class SocketModule extends Module {
   app:ISocketApp;
@@ -41,6 +42,9 @@ export class SocketModule extends Module {
 
   constructor(app:ISocketApp, path:string='/socket') {
     super(app);
+
+    app.updateChecker.addUpdateable(new SocketUpdateable(app));
+
     if(!app.server) throw new Error("SocketModule requires ServerModule to be setup.");
 
     this.path = path;

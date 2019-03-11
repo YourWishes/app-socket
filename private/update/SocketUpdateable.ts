@@ -21,9 +21,15 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+import { ModuleUpdateable, NPMPackage } from '@yourwishes/app-base';
+import { ISocketApp } from './../app/';
 
-export * from './app/';
-export * from './connection/';
-export * from './module/';
-export * from './api/';
-export * from './update/';
+export class SocketUpdateable extends ModuleUpdateable {
+  app:ISocketApp;
+  constructor(app:ISocketApp) {
+    super();
+    this.app = app;
+  }
+
+  getPackage():NPMPackage { return require('./../../../package.json'); }
+}
