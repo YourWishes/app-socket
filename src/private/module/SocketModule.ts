@@ -21,38 +21,36 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import { Module } from '@yourwishes/app-base';
-import { ISocketApp } from './../app/';
+import { Module, NPMPackage } from '@yourwishes/app-base';
+import { IAPIOwner } from '@yourwishes/app-api';
 import * as SocketIO from 'socket.io';
 import { Socket, Server } from 'socket.io';
 import * as SocketIOWildcard from 'socketio-wildcard';
 
+import { ISocketApp } from './../app/';
 import { SocketConnection } from './../connection/';
 import { SocketAPIHandler } from './../api/';
-import { SocketUpdateable } from './../update/';
 
-export class SocketModule extends Module {
+export class SocketModule extends Module implements IAPIOwner {
   app:ISocketApp;
   autoStartServer:boolean;
   path:string;
   server:Server;
 
-  sockets:SocketConnection[] = [];
-  handlers:SocketAPIHandler[] = [];
+  sockets:SocketConnection[]=[];
+  handlers:SocketAPIHandler[]=[];
 
   constructor(app:ISocketApp, path:string='/socket') {
     super(app);
-
-    app.updateChecker.addUpdateable(new SocketUpdateable(app));
-
     if(!app.server) throw new Error("SocketModule requires ServerModule to be setup.");
 
     this.path = path;
 
     //Hijack autostart, SocketIO needs to load first.
-    this.autoStartServer = app.server.autoStart;
     app.server.autoStart = false;
   }
+
+  getPackage():NPMPackage { return require('./../../../package.json'); }
 
   addHandler(handler:SocketAPIHandler) {
     if(handler == null) throw new Error("Invalid Handler Supplied");
@@ -68,11 +66,15 @@ export class SocketModule extends Module {
   }
 
   async init():Promise<void> {
-    //SocketIO won't work for an already listening server... that being said we can hijack it a bit
-    if(this.app.server.http.listening) throw new Error("Server is already listening, Socket cannot attach to a listening server.");
+    let { server } = this.app.server;
+    let { http, https } = server;
+
+    //SocketIO won't work for an already listening server...
+    if(!http && !https) throw new Error("Server is not initialized!");
+    if(http.listening || https.listening) throw new Error("Server is already listening, Socket cannot attach to a listening server.");
 
     //Prepare server
-    this.server = SocketIO(this.app.server.http, {
+    this.server = SocketIO(http || https, {
       path: this.path,
       serveClient: false
     });
@@ -81,13 +83,14 @@ export class SocketModule extends Module {
     this.server.use(SocketIOWildcard());
 
     //Attach to server
-    this.server.attach(this.app.server.http);
-    if(this.app.server.https) this.server.attach(this.app.server.https);
+    this.server.attach(http);
+    if(https) this.server.attach(https);
 
     this.server.on('connection', socket => this.onConnection(socket));
+  }
 
-    //Now we can start the server.
-    if(this.autoStartServer) await this.app.server.start();
+  async destroy():Promise<void> {
+
   }
 
   async onConnection(socket:Socket) {

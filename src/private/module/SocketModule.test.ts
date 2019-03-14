@@ -5,9 +5,7 @@ import { ServerModule } from '@yourwishes/app-server';
 import { Socket } from 'socket.io';
 
 import { SocketModule } from './SocketModule';
-import { ISocketApp } from './../app/';
-import { SocketConnection } from './../connection';
-import { SocketAPIHandler } from './../api/';
+import { ISocketApp, SocketConnection , SocketAPIHandler } from './../';
 
 //Dummy App class
 class DummyAppClass extends App implements ISocketApp {
@@ -32,7 +30,7 @@ class DummySocketHandler extends SocketAPIHandler {
 
 const app = new DummyAppClass();
 app.server = new ServerModule(app);
-app.addModule(app.server);
+app.modules.addModule(app.server);
 
 
 describe('SocketModule', () => {
@@ -46,27 +44,11 @@ describe('SocketModule', () => {
   it('should construct', () => {
     expect(() => new SocketModule(app)).not.toThrow();
   });
+});
 
-  it('should modify the server to turn off autostart', () => {
-    let app = new DummyAppClass();
-    app.server = new ServerModule(app);
-    app.addModule(app.server);
-
-    expect(app.server.autoStart).toStrictEqual(true);
-    let module = new SocketModule(app);
-    expect(app.server.autoStart).toStrictEqual(false);
-    expect(module.autoStartServer).toStrictEqual(true);
-  });
-
-  it('should retain the server autostart', () => {
-    let app = new DummyAppClass();
-    app.server = new ServerModule(app);
-    app.addModule(app.server);
-
-    app.server.autoStart = false;
-    let module = new SocketModule(app);
-    expect(app.server.autoStart).toStrictEqual(false);
-    expect(module.autoStartServer).toStrictEqual(false);
+describe('getPackage', () => {
+  it('should return the package data', () => {
+    expect(new SocketModule(app).getPackage()).toHaveProperty('name', '@yourwishes/app-socket');
   });
 });
 
@@ -138,9 +120,3 @@ describe('init', () => {
     await expect(module.init()).rejects.toThrow();
   });
 });
-
-/*
-  Don't have a way of testing at the moment
-describe('onConnection', () => {
-});
-*/

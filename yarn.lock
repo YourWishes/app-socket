@@ -21,12 +21,12 @@
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-23.3.14.tgz#37daaf78069e7948520474c87b80092ea912520a"
 
 "@types/node@*":
-  version "11.11.0"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-11.11.0.tgz#070e9ce7c90e727aca0e0c14e470f9a93ffe9390"
+  version "11.11.3"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-11.11.3.tgz#7c6b0f8eaf16ae530795de2ad1b85d34bf2f5c58"
 
 "@types/node@^10.12.12":
-  version "10.12.30"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.30.tgz#4c2b4f0015f214f8158a347350481322b3b29b2f"
+  version "10.14.1"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.14.1.tgz#8701cd760acc20beba5ffe0b7a1b879f39cb8c41"
 
 "@types/socket.io-client@^1.4.32":
   version "1.4.32"
@@ -38,25 +38,23 @@
   dependencies:
     "@types/node" "*"
 
-"@yourwishes/app-api@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@yourwishes/app-api/-/app-api-1.0.0.tgz#91a62af662d578e37820615e3c586b87d082ee69"
-  dependencies:
-    "@yourwishes/app-base" "^1.1.1"
+"@yourwishes/app-api@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@yourwishes/app-api/-/app-api-1.1.0.tgz#e44fa62fe69fbeb17f61717f9eb3ce2fae21d567"
 
-"@yourwishes/app-base@^1.1.1", "@yourwishes/app-base@^1.4.1":
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/@yourwishes/app-base/-/app-base-1.4.1.tgz#02836e763fa31f791c47cb72f1af781b32888bef"
+"@yourwishes/app-base@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@yourwishes/app-base/-/app-base-2.0.0.tgz#faca1fc6665aa1b0d99dfa75c839210543258bd0"
   dependencies:
     cross-fetch "^3.0.1"
     node-cache "^4.2.0"
 
-"@yourwishes/app-server@^1.1.5":
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/@yourwishes/app-server/-/app-server-1.1.5.tgz#019df53eca813facd20c0f3fc57ca7c8f50aafdc"
+"@yourwishes/app-server@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@yourwishes/app-server/-/app-server-2.0.0.tgz#ad272787fe6a2ea6c792404b92c786b0aa03aba7"
   dependencies:
-    "@yourwishes/app-api" "^1.0.0"
-    "@yourwishes/app-base" "^1.4.1"
+    "@yourwishes/app-api" "^1.1.0"
+    "@yourwishes/app-base" "^2.0.0"
     body-parser "^1.18.3"
     express "^4.16.4"
 
@@ -2342,8 +2340,8 @@ ms@^2.1.1:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.1.tgz#30a5864eb3ebb0a66f2ebe6d727af06a09d86e0a"
 
 nan@^2.9.2:
-  version "2.12.1"
-  resolved "https://registry.yarnpkg.com/nan/-/nan-2.12.1.tgz#7b1aa193e9aa86057e3c7bbd0ac448e770925552"
+  version "2.13.0"
+  resolved "https://registry.yarnpkg.com/nan/-/nan-2.13.0.tgz#7bdfc27dd3c060c46e60b62c72b74012d1a4cd68"
 
 nanomatch@^1.2.9:
   version "1.2.13"
@@ -3147,8 +3145,8 @@ source-map-support@^0.4.15:
     source-map "^0.5.6"
 
 source-map-support@^0.5.6:
-  version "0.5.10"
-  resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.5.10.tgz#2214080bc9d51832511ee2bab96e3c2f9353120c"
+  version "0.5.11"
+  resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.5.11.tgz#efac2ce0800355d026326a0ca23e162aeac9a4e2"
   dependencies:
     buffer-from "^1.0.0"
     source-map "^0.6.0"
