@@ -48,7 +48,7 @@ describe('SocketModule', () => {
 
 describe('getPackage', () => {
   it('should return the package data', () => {
-    expect(new SocketModule(app).getPackage()).toHaveProperty('name', '@yourwishes/app-socket');
+    expect(new SocketModule(app).package).toHaveProperty('name', '@yourwishes/app-socket');
   });
 });
 

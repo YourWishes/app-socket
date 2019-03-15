@@ -50,7 +50,7 @@ export class SocketModule extends Module implements IAPIOwner {
     app.server.autoStart = false;
   }
 
-  getPackage():NPMPackage { return require('./../../../package.json'); }
+  loadPackage():NPMPackage { return require('./../../../package.json'); }
 
   addHandler(handler:SocketAPIHandler) {
     if(handler == null) throw new Error("Invalid Handler Supplied");
